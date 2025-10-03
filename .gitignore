@@ -1,0 +1,38 @@
+# Локальные env-файлы с секретами
+# Env
+.env
+.env.*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pytest_cache/
+.venv/
+
+# SQLite / данные
+*.db
+*.sqlite
+*.sqlite3
+/data/
+*.log
+*.jsonl
+
+# Docker
+*.pid
+*.sock
+
+# IDE/OS
+.vscode/
+.idea/
+.DS_Store
+
+# Arduino / ESP
+.pio/
+build*/
+*.elf
+*.bin
+*.hex
+*.map
+include/secrets.h

@@ -1,0 +1,52 @@
+services:
+  init_db:
+    container_name: init_db
+    build:
+      context: ./init_db
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      - DB_FILE=/data/weather.db
+      - DATA_DIR=/data
+    volumes:
+      - ./data:/data
+    restart: "no"
+
+  esp_server:
+    container_name: esp_server
+    build:
+      context: ./esp_server
+      dockerfile: Dockerfile.esp
+    env_file:
+      - .env
+    environment:
+      - LOG_FILE=/data/weather_log.jsonl
+      - DB_FILE=/data/weather.db
+      - RETENTION_DAYS=90
+      - JSONL_ROTATE_MONTHLY=true
+    volumes:
+      - ./data:/data
+    ports:
+      - "8080:8080"
+    depends_on:
+      init_db:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+  telegram_bot:
+    container_name: telegram_bot
+    build:
+      context: ./telegram_bot
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      - DB_FILE=/data/weather.db
+      - TZ=Europe/Moscow
+    volumes:
+      - ./data:/data:ro
+    depends_on:
+      init_db:
+        condition: service_completed_successfully
+    restart: unless-stopped

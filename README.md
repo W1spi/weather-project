@@ -23,6 +23,8 @@
 ---
 
 ## Структура проекта
+
+```
 weather-project/
 ├── esp_server/        # HTTP сервер для ESP
 │   ├── esp_server.py
@@ -39,6 +41,7 @@ weather-project/
 ├── .env.example       # Шаблон конфигурации
 ├── .gitignore
 └── README.md
+```
 
 ## Быстрый старт
 

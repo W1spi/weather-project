@@ -22,6 +22,30 @@
 
 ---
 
+## Архитектура
+
+```mermaid
+flowchart LR
+    subgraph ESP[ESP32 / ESP8266 Sensors]
+        AHT20 -->|t,h| HTTP
+        BME280 -->|t,h,p| HTTP
+    end
+
+    ESP -->|POST JSON| S1[esp_server]
+
+    subgraph Docker
+        S1[esp_server<br/>Python + SQLite]
+        S2[telegram_bot<br/>python-telegram-bot]
+        S3[init_db<br/>init schema]
+    end
+
+    S1 <--> |read/write| DB[(SQLite DB)]
+    S2 -->|read| DB
+
+    U[User / Telegram] -->|commands| S2
+    S2 -->|responses| U
+```
+
 ## Структура проекта
 
 ```

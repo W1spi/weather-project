@@ -44,26 +44,34 @@ weather-project/
 
 1. Клонируем репозиторий
 
+```bash
 git clone https://github.com/W1spi/weather-project.git
 cd weather-project
+```
 
 2. Настраиваем окружение
 
 Создаём файл .env на основе .env.example:
 
+```bash
 cp .env.example .env
 nano .env
+```
 
 Прописываем реальные значения:
 
+```env
 BOT_TOKEN=your_telegram_token
 TZ=Europe/Moscow
 DATA_DIR=/data
 DB_FILE=/data/weather.db
+```
 
 3. Запускаем
 
+```bash
 docker compose up -d --build
+```
 
 4. Проверяем
 

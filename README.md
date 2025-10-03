@@ -81,6 +81,7 @@ Telegram-бот: пишем /start в чат с ботом.
 
 ESP32 шлёт POST запросы в http://<server>:8080/ с телом JSON:
 
+```JSON
 {
   "t_dht": 22.5,
   "h_dht": 40,
@@ -90,22 +91,25 @@ ESP32 шлёт POST запросы в http://<server>:8080/ с телом JSON:
   "zone": "indoor",
   "source": "esp32-c3"
 }
+```
 
 Сервер поддерживает алиасы для полей:
-Температура: t_dht, temperature_dht, t_bme, temperature, temp
-Влажность: h_dht, humidity_dht, h_bme, humidity, hum
-Давление: pressure, press, p_bme
+Температура: ```t_dht, temperature_dht, t_bme, temperature, temp```
+Влажность: ```h_dht, humidity_dht, h_bme, humidity, hum```
+Давление: ```pressure, press, p_bme```
 
 ## Использование Telegram-бота
 
 Команды
 
+```
 /start — справка и меню.
 /weather — текущие показания.
 /ago <минуты> [sensor] — значения N минут назад.
 /trend [минуты] [sensor] — тренд (по умолчанию 30 минут).
 /debug — краткая диагностика БД.
 /dbdiag — путь и статистика БД.
+```
 
 Inline-кнопки
 

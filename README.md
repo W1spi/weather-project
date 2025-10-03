@@ -27,7 +27,7 @@
 ```mermaid
 flowchart LR
     subgraph ESP[ESP32 / ESP8266 Sensors]
-        AHT20 -->|t,h| HTTP
+        AHT20/DHT22 -->|t,h| HTTP
         BME280 -->|t,h,p| HTTP
     end
 
